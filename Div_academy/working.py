@@ -1,5 +1,52 @@
-import numpy as np
+import tkinter as tk
+import ttkbootstrap as ttk
 
-for i in range(10):
-    print(i)
-    
+def convert():
+    mile_input = entry_int.get()
+    km_output = mile_input * 1.6
+    output_string.set(km_output)
+
+# window
+window = ttk.Window(themename='darkly')
+window.title("Miles to Kilometers")
+window.geometry("400x200")
+
+# title
+title_label = ttk.Label(
+    window,
+    text="Miles to Kilometers",
+    font="Calibri 24 bold"
+)
+title_label.pack()
+
+# input frame
+input_frame = ttk.Frame(master=window)
+
+entry_int = tk.IntVar()
+
+entry = ttk.Entry(
+    master=input_frame,
+    textvariable=entry_int
+)
+
+button = ttk.Button(
+    master=input_frame,
+    text="Convert",
+    command=convert
+)
+
+entry.pack(side="left", padx=10)
+button.pack(side="left")
+input_frame.pack(pady=10)
+
+# output
+output_string = tk.StringVar()
+
+output_label = ttk.Label(
+    master=window,
+    font="Calibri 24",
+    textvariable=output_string,
+)
+output_label.pack(pady=5)
+
+window.mainloop()
